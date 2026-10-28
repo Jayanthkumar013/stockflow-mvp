@@ -1,0 +1,42 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}StockFlow{% endblock %} · StockFlow</title>
+  <link rel="stylesheet" href="{% static 'css/app.css' %}">
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-800">
+  {% if user.is_authenticated %}
+  <nav class="border-b border-slate-200 bg-white">
+    <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3">
+      <div class="flex items-center gap-6">
+        <a href="{% url 'dashboard' %}" class="text-lg font-bold text-indigo-600">StockFlow</a>
+        {% with name=request.resolver_match.url_name %}
+        <a href="{% url 'dashboard' %}" class="text-sm font-medium {% if name == 'dashboard' %}text-indigo-600{% else %}text-slate-600 hover:text-slate-900{% endif %}">Dashboard</a>
+        <a href="{% url 'product_list' %}" class="text-sm font-medium {% if 'product' in name %}text-indigo-600{% else %}text-slate-600 hover:text-slate-900{% endif %}">Products</a>
+        <a href="{% url 'settings' %}" class="text-sm font-medium {% if name == 'settings' %}text-indigo-600{% else %}text-slate-600 hover:text-slate-900{% endif %}">Settings</a>
+        {% endwith %}
+      </div>
+      <div class="flex items-center gap-4 text-sm">
+        <span class="text-slate-500">{{ user.organization.name }} · {{ user.email }}</span>
+        <form method="post" action="{% url 'logout' %}">{% csrf_token %}
+          <button class="rounded-lg border border-slate-300 px-3 py-1.5 hover:bg-slate-100">Log out</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  {% endif %}
+
+  <main class="mx-auto max-w-6xl px-4 py-8">
+    {% if messages %}
+      <div class="mb-6 space-y-2">
+        {% for message in messages %}
+          <div class="rounded-lg px-4 py-3 text-sm {% if message.tags == 'error' %}bg-red-50 text-red-700 border border-red-200{% else %}bg-emerald-50 text-emerald-700 border border-emerald-200{% endif %}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

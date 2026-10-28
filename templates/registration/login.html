@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Log in{% endblock %}
+{% block content %}
+{% include "_auth_card.html" %}
+<div class="mx-auto max-w-md rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+  <h2 class="mb-6 text-xl font-semibold">Log in</h2>
+  <form method="post" class="space-y-4" novalidate>
+    {% csrf_token %}
+    {% for error in form.non_field_errors %}<p class="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">Invalid email or password.</p>{% endfor %}
+    {% for field in form %}{% include "_field.html" %}{% endfor %}
+    <button class="w-full rounded-lg bg-indigo-600 py-2.5 font-medium text-white hover:bg-indigo-700">Log in</button>
+  </form>
+  <p class="mt-6 text-center text-sm text-slate-500">No account? <a href="{% url 'signup' %}" class="font-medium text-indigo-600 hover:underline">Sign up</a></p>
+</div>
+{% endblock %}
