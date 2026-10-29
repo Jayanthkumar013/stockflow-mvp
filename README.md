@@ -28,8 +28,9 @@ A minimal multi-tenant inventory app built with **Python (Django)**. Each user s
 ## Run locally
 
 ```bash
-git clone <your-repo-url>
-cd stockflow
+git clone https://github.com/Jayanthkumar013/stockflow-mvp.git
+cd stockflow-mvp
+
 python -m venv venv
 # Windows: venv\Scripts\activate     Mac/Linux: source venv/bin/activate
 pip install -r requirements.txt
@@ -50,7 +51,7 @@ python manage.py test
 1. Push this repo to GitHub.
 2. On https://render.com → **New → Blueprint** → select the repo.
 3. Render reads `render.yaml` and creates the web service and a free PostgreSQL database. `build.sh` installs dependencies, collects static files and runs migrations.
-4. When it's live, open the `https://stockflow-xxxx.onrender.com` URL.
+4. When it's live, open the `stockflow-7tbo.onrender.com` URL.
 
 ## Design decisions
 
