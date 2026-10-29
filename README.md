@@ -2,7 +2,7 @@
 
 A minimal multi-tenant inventory app built with **Python (Django)**. Each user signs up with their own organization, manages products and stock, and sees a dashboard with low-stock alerts. One organization can never see another organization's data.
 
-**Live demo:** [_add your Render URL here_](https://stockflow-7tbo.onrender.com)
+**Live demo:** (https://stockflow-7tbo.onrender.com)
 
 ![Dashboard](docs/dashboard.png)
 
